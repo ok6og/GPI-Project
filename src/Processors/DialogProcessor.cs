@@ -175,49 +175,49 @@ namespace Draw
 				);
 			}
 		}
-		public static void cToStr(object file, string path = null)
+		public static void ConvertToStream(object obj, string filePath = null)
 		{
-			var format = new BinaryFormatter();
-			Stream fileStr;
-			if (path != null)
+			IFormatter formatter = new BinaryFormatter();
+			Stream stream;
+			if (filePath != null)
 			{
-				fileStr = new FileStream(path + ".bin",FileMode.Create);
+				stream = new FileStream(filePath + ".bin",FileMode.Create);
 			}
 			else
 			{
-				fileStr = new FileStream("random.bin",FileMode.Create,FileAccess.Write, FileShare.None);
+				stream = new FileStream("random.bin",FileMode.Create,FileAccess.Write, FileShare.None);
 			}
-			format.Serialize(fileStr, file);
-			fileStr.Close();
+			formatter.Serialize(stream, obj);
+			stream.Close();
 		}
 
-		public static object cStream(string path = null)
+		public static object ConvertStream(string filePath = null)
 		{
 			
-			var format = new BinaryFormatter();
-			Stream fileStr;
-			object file;
-			if (path != null)
+			IFormatter formatter = new BinaryFormatter();
+			Stream stream;
+			object obj;
+			if (filePath != null)
 			{
-				fileStr = new FileStream(path,FileMode.Open,FileAccess.Read, FileShare.None);
+				stream = new FileStream(filePath,FileMode.Open,FileAccess.Read, FileShare.None);
 			}
 			else
 			{
-				fileStr = new FileStream("random.bin",FileMode.Open);
+				stream = new FileStream("random.bin",FileMode.Open);
 			}
-			file = format.Deserialize(fileStr);
-			fileStr.Close();
-			return file;
+			obj = formatter.Deserialize(stream);
+			stream.Close();
+			return obj;
 		}
 
 		public void Copy()
 		{
-			cToStr(Selection);
+			ConvertToStream(Selection);
 		}
 
 		public void Paste()
 		{
-			List<Shape> copied = (List<Shape>)cStream();
+			List<Shape> copied = (List<Shape>)ConvertStream();
 			ShapeList.AddRange(copied);
 		}
 

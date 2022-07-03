@@ -52,15 +52,18 @@ namespace Draw
 			var pointD = new PointF(Rectangle.X + Rectangle.Width / 2, Rectangle.Y + Rectangle.Height);
 			var pointE = new PointF(Rectangle.X + Rectangle.Height - 30, Rectangle.Y + 30);
 			var pointF = new PointF(Rectangle.X + 29, Rectangle.Y + Rectangle.Height - 30);
+			var pointG = new PointF(Rectangle.X, Rectangle.Y + Rectangle.Height/2);
+			var pointH = new PointF(Rectangle.X + Rectangle.Width, Rectangle.Y + Rectangle.Height / 2);
 
 
 			grfx.FillEllipse(new SolidBrush(Color.FromArgb(Opacity, FillColor)), Rectangle.X, Rectangle.Y, Rectangle.Width, Rectangle.Height);
 			grfx.DrawEllipse(new Pen(OutlineColor, OutlineWidth), Rectangle.X, Rectangle.Y, Rectangle.Width, Rectangle.Height);
 			//grfx.DrawLine(new Pen(StrokeColor), (int)smallPiece, (int)smallPiece, (int)bigPiece+300, (int)smallPiece+300);
 			//grfx.DrawLine(new Pen(StrokeColor), 300, Rectangle.X, 300, 400);
-			grfx.DrawLine(new Pen(OutlineColor), pointA, pointB);
+			grfx.DrawLine(new Pen(OutlineColor), pointA, pointE);
 			grfx.DrawLine(new Pen(OutlineColor), pointC, pointD);
-			grfx.DrawLine(new Pen(OutlineColor), pointE, pointF);
+			grfx.DrawLine(new Pen(OutlineColor), pointB, pointF);
+			grfx.DrawLine(new Pen(OutlineColor), pointG, pointH);
 
 
 			grfx.ResetTransform();

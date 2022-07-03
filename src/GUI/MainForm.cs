@@ -302,7 +302,7 @@ namespace Draw
 			if (dlg.ShowDialog() == DialogResult.OK)
 			{
 
-				DialogProcessor.cToStr(dialogProcessor.ShapeList, dlg.FileName);
+				DialogProcessor.ConvertToStream(dialogProcessor.ShapeList, dlg.FileName);
 			}
 			statusBar.Items[0].Text = ("Последно действие: Saving file");
 		}
@@ -312,7 +312,7 @@ namespace Draw
 			OpenFileDialog dlg = new OpenFileDialog();
 			if (dlg.ShowDialog() == DialogResult.OK)
 			{
-				dialogProcessor.ShapeList = (List<Shape>)DialogProcessor.cStream(dlg.FileName);
+				dialogProcessor.ShapeList = (List<Shape>)DialogProcessor.ConvertStream(dlg.FileName);
 				viewPort.Invalidate();
 			}
 			statusBar.Items[0].Text = ("Последно действие: Loading file");
@@ -374,5 +374,7 @@ namespace Draw
 				}
 			}
 		}
+
+
     }
 }
